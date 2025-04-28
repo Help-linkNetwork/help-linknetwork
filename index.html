@@ -59,6 +59,29 @@
     .contact-link:hover {
       text-decoration: underline;
     }
+    table {
+      background: white;
+      width: 100%;
+      border-radius: 10px;
+      overflow: hidden;
+    }
+    th, td {
+      text-align: center;
+      vertical-align: middle;
+    }
+    .status-btn {
+      padding: 5px 15px;
+      border: none;
+      border-radius: 20px;
+      color: white;
+      cursor: pointer;
+    }
+    .open-btn {
+      background-color: green;
+    }
+    .closed-btn {
+      background-color: red;
+    }
   </style>
 </head>
 <body>
@@ -76,6 +99,7 @@
         <li class="nav-item"><a class="nav-link" href="#home">Home</a></li>
         <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
         <li class="nav-item"><a class="nav-link" href="#how">How It Works</a></li>
+        <li class="nav-item"><a class="nav-link" href="#jobs">Job Listings</a></li>
         <li class="nav-item"><a class="nav-link" href="#postjob">Post a Job</a></li>
         <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
       </ul>
@@ -115,7 +139,7 @@
 <section id="postjob" class="section">
   <div class="container">
     <h2>Post a Job</h2>
-    <form id="jobForm" action="https://wa.me/+2349026520949" method="get" target="_blank">
+    <form id="jobForm">
       <div class="mb-3">
         <input type="text" class="form-control" id="jobTitle" placeholder="Job Title" required>
       </div>
@@ -134,8 +158,8 @@
   <div class="container">
     <h2>Contact Us</h2>
     <p>If you have any questions or need assistance, feel free to reach out:</p>
-    <p>Primary Admin Contact: <a href="https://wa.me/+2349017310989" class="contact-link">0901 731 0989</a></p>
-    <p>Secondary Contact (For Escalation): <a href="https://wa.me/+2349026520949" class="contact-link">0902 652 0949</a></p>
+    <p>Primary Admin Contact: <a href="https://wa.me/+2349026520949" class="contact-link">0902 652 0949</a></p>
+    <p>Secondary Contact (For Escalation): <a href="https://wa.me/+2349017310989" class="contact-link">0901 731 0989</a></p>
   </div>
 </section>
 
@@ -144,6 +168,25 @@
 </footer>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+<script>
+  const jobForm = document.getElementById('jobForm');
+
+  jobForm.addEventListener('submit', function(e) {
+    e.preventDefault();
+
+    const jobTitle = document.getElementById('jobTitle').value;
+    const jobBudget = document.getElementById('jobBudget').value;
+    const jobSpec = document.getElementById('jobSpec').value;
+
+    const message = `New Job Request:\nName: David\nService: ${jobTitle}\nDetails: ${jobSpec} for ${jobBudget} naira`;
+
+    const whatsappUrl = `https://wa.me/+2349026520949?text=${encodeURIComponent(message)}`;
+
+    window.open(whatsappUrl, '_blank');
+    jobForm.reset();
+  });
+</script>
 
 </body>
 </html>
